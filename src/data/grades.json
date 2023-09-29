@@ -1,32 +1,56 @@
 {
-  "junior": {
-    "title": "Junior",
-    "minExperience": 0,
-    "maxExperience": 1
+  "Junior": {
+    "monthlyBaseSalary": 2700,
+    "yearlyBaseSalary": 32400,
+    "minDailyRate": 350,
+    "dailyRate": 350,
+    "transport": 37.6,
+    "mutual": 60,
+    "tr": 112.56
   },
-  "juniorPlus": {
-    "title": "Junior +",
-    "minExperience": 2,
-    "maxExperience": 3
+  "Junior 2": {
+    "monthlyBaseSalary": 3000,
+    "yearlyBaseSalary": 36000,
+    "minDailyRate": 350,
+    "dailyRate": 350,
+    "transport": 37.6,
+    "mutual": 60,
+    "tr": 112.56
   },
-  "intermediate": {
-    "title": "Intermédiaire",
-    "minExperience": 4,
-    "maxExperience": 6
+  "confirmé": {
+    "monthlyBaseSalary": 3300,
+    "yearlyBaseSalary": 39600,
+    "minDailyRate": 350,
+    "dailyRate": 350,
+    "transport": 37.6,
+    "mutual": 60,
+    "tr": 112.56
   },
-  "intermediatePlus": {
-    "title": "Intermédiaire +",
-    "minExperience": 7,
-    "maxExperience": 8
+  "confirmé 2": {
+    "monthlyBaseSalary": 3500,
+    "yearlyBaseSalary": 42000,
+    "minDailyRate": 370,
+    "dailyRate": 370,
+    "transport": 37.6,
+    "mutual": 60,
+    "tr": 112.56
   },
-  "senior": {
-    "title": "Senior",
-    "minExperience": 9,
-    "maxExperience": 12
+  "Senior": {
+    "monthlyBaseSalary": 3900,
+    "yearlyBaseSalary": 46800,
+    "minDailyRate": 390,
+    "dailyRate": 390,
+    "transport": 37.6,
+    "mutual": 60,
+    "tr": 112.56
   },
-  "seniorPlus": {
-    "title": "Senior +",
-    "minExperience": 13,
-    "maxExperience": 99
+  "Senior 2": {
+    "monthlyBaseSalary": 4200,
+    "yearlyBaseSalary": 50400,
+    "minDailyRate": 410,
+    "dailyRate": 410,
+    "transport": 37.6,
+    "mutual": 60,
+    "tr": 112.56
   }
 }

@@ -1,41 +1,19 @@
 import Excel from 'exceljs';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
 
+import { CellCoord, Euros, PayGrades, Percentage, Sheet } from '../types';
+import { resolvePath } from './resolvePath';
 import { writeJson } from './writeJson';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const excelPath = path.resolve(__dirname, '../data/Calcul salaires.xlsm');
 
 const workbook = new Excel.Workbook();
 
 try {
-  await workbook.xlsx.readFile(excelPath);
+  await workbook.xlsx.readFile(resolvePath('../data/Calcul salaires.xlsm'));
 } catch (error) {
   console.log(error);
 }
 
 const gridSheet = workbook.getWorksheet(1);
 const dataSheet = workbook.getWorksheet(5);
-
-type CellCoord = number | string;
-type Euros = number;
-type Percentage = number;
-type Sheet = Excel.Worksheet;
-
-export type PayGrade = {
-  monthlyBaseSalary: Euros;
-  yearlyBaseSalary: Euros;
-  minDailyRate: Euros;
-  transport: Euros;
-  mutual: Euros;
-  ticketRestaurant: Euros;
-};
-
-type PayGrades = {
-  [name: string]: PayGrade;
-};
 
 const getValue = (sheet: Sheet, cell: CellCoord) => {
   const cellValue = sheet.getCell(cell).value;
@@ -75,7 +53,7 @@ gridSheet.eachRow((_, rowNumber) => {
       dailyRate: getValue(gridSheet, `AB${rowNumber}`) as Euros,
       transport: getValue(gridSheet, `T${rowNumber}`) as Euros,
       mutual: getValue(gridSheet, `V${rowNumber}`) as Euros,
-      ticketRestaurant: getValue(gridSheet, `X${rowNumber}`) as Euros,
+      ticketsRestaurant: getValue(gridSheet, `X${rowNumber}`) as Euros,
     };
 
     payGrades[gradeName] = gradeValues;

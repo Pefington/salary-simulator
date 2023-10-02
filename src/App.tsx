@@ -1,12 +1,12 @@
 import "./tailwind.css";
 
-import ExperienceSlider from "./ExperienceSlider";
+import SalaryForm from "./SalaryForm";
 
 function App() {
   return (
-    <main className="container">
-      <ExperienceSlider />
-    </main>
+    <>
+      <SalaryForm />
+    </>
   );
 }
 

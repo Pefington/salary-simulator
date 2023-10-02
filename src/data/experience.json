@@ -1,32 +1,32 @@
-{
-  "junior": {
+[
+  {
     "title": "Junior",
     "minExperience": 0,
     "maxExperience": 2
   },
-  "juniorPlus": {
-    "title": "Junior +",
+  {
+    "title": "Junior+",
     "minExperience": 2,
     "maxExperience": 4
   },
-  "intermediate": {
+  {
     "title": "Intermédiaire",
     "minExperience": 4,
     "maxExperience": 7
   },
-  "intermediatePlus": {
-    "title": "Intermédiaire +",
+  {
+    "title": "Intermédiaire+",
     "minExperience": 7,
     "maxExperience": 9
   },
-  "senior": {
+  {
     "title": "Senior",
     "minExperience": 9,
     "maxExperience": 12
   },
-  "seniorPlus": {
-    "title": "Senior +",
+  {
+    "title": "Senior+",
     "minExperience": 12,
     "maxExperience": 99
   }
-}
+]

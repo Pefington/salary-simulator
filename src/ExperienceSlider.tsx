@@ -15,8 +15,6 @@ function ExperienceSlider() {
     const newExperience = experienceLevels.find(
       (level) => value >= level.minExperience && value <= level.maxExperience,
     );
-    let label = value.toString();
-    if (value === 0) label = "Débutant";
 
     setExperience({ title: newExperience!.title, years: value });
   };

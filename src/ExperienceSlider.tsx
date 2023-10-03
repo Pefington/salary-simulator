@@ -20,31 +20,43 @@ function ExperienceSlider() {
   };
 
   const yearsLabel = (years: number = experience.years) => {
-    if (years === 0) return "Débutant";
+    if (years === 0) return "Première année";
     if (years === 1) return `1 an`;
     if (years > 12) return `12+ ans`;
-    return `${years} ans`;
+    return `${years}\u00A0ans`;
   };
 
   return (
-    <div className="w-3/4 flex-1">
+    <div className="w-full max-w-5xl">
       <h2 className="mb-4 text-2xl font-semibold text-adv-gold">{experience.title}</h2>
-      <h3 className="mb-4 text-xl">{`Expérience en développement : ${yearsLabel()}`}</h3>
+      <h3 className="mb-4 text-lg">
+        {`Développement en entreprise\u00A0:\u00A0`}
+        <br className="sm:hidden" />
+        <span className="text-adv-gold">{`${yearsLabel()}`}</span>
+      </h3>
       <ReactSlider
         className="my-8 flex flex-col justify-center"
-        markClassName="relative bg-sky-950 h-2 aspect-square rounded-full ring-4 ring-adv-gold/75 translate-x-full"
+        markClassName={clsx(
+          "relative translate-x-full",
+          "h-2 aspect-square",
+          "bg-sky-950",
+          "rounded-full",
+          "ring-4 ring-adv-gold",
+        )}
         thumbClassName={clsx(
           "h-6 aspect-square",
-          "bg-adv-gold",
+          experience.title.includes("Junior") && "bg-lime-400",
+          experience.title.includes("Intermédiaire") && "bg-adv-gold",
+          experience.title.includes("Senior") && "bg-orange-500",
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
         )}
-        trackClassName="bg-adv-gold/75 h-1.5 rounded-full"
+        trackClassName="bg-adv-gold h-1.5 rounded-full"
         min={0}
         max={13}
         value={experience.years}
         onChange={onChange}
-        marks={true}
+        marks={[0, 3, 5, 8, 10]}
       />
     </div>
   );

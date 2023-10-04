@@ -10,12 +10,12 @@
     "maxExperience": 4
   },
   {
-    "title": "Intermédiaire",
+    "title": "Confirmé",
     "minExperience": 4,
     "maxExperience": 7
   },
   {
-    "title": "Intermédiaire+",
+    "title": "Confirmé+",
     "minExperience": 7,
     "maxExperience": 9
   },

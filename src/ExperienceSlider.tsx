@@ -23,7 +23,7 @@ function ExperienceSlider() {
   }, [experience, title]);
 
   const getYearsLabel = (years: number = experience) => {
-    if (years === 0) return "Première année";
+    if (years === 0) return "Première\u00A0année";
     if (years === 1) return `1 an`;
     if (years > 12) return `12+ ans`;
     return `${years}\u00A0ans`;

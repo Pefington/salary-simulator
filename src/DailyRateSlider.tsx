@@ -1,13 +1,13 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useAtom } from "jotai";
 import ReactSlider from "react-slider";
 
-function DailyRateSlider() {
-  const [dailyRate, setDailyRate] = useState(350);
+import { selectedRate } from "./state/jotai";
 
-  const onChange = (value: number) => {
-    setDailyRate(value);
-  };
+function DailyRateSlider() {
+  const [dailyRate, setDailyRate] = useAtom(selectedRate);
+
+  const onChange = (value: number) => setDailyRate(value);
 
   return (
     <div className="w-full max-w-5xl">

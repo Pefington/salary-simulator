@@ -1,13 +1,13 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useAtom } from "jotai";
 import ReactSlider from "react-slider";
 
-function YearlyWorkedDaysSlider() {
-  const [workedDays, setWorkedDays] = useState(218);
+import { selectedDays } from "./state/jotai";
 
-  const onChange = (value: number) => {
-    setWorkedDays(value);
-  };
+function YearlyWorkedDaysSlider() {
+  const [workedDays, setWorkedDays] = useAtom(selectedDays);
+
+  const onChange = (value: number) => setWorkedDays(value);
 
   return (
     <div className="w-full max-w-5xl">

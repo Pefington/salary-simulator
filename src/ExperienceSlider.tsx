@@ -1,38 +1,45 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import { useEffect, useRef, useState } from "react";
 import ReactSlider from "react-slider";
 
-import experienceLevels from "./data/experience.json";
+import { selectedExperience } from "./state/jotai";
+import { Years } from "./types";
+import { findTitle } from "./utils/helpers";
 
 function ExperienceSlider() {
-  const [experience, setExperience] = useState({ title: "Junior", years: 0 });
+  const [experience, setExperience] = useAtom(selectedExperience);
+  const [title, setTitle] = useState(findTitle(experience));
+
+  const experienceRef = useRef(experience);
 
   useEffect(() => {
-    document.title = experience.title;
+    experienceRef.current = experience;
   }, [experience]);
 
-  const onChange = (value: number) => {
-    const newExperience = experienceLevels.find(
-      (level) => value >= level.minExperience && value <= level.maxExperience,
-    );
+  useEffect(() => {
+    setTitle(findTitle(experience));
+    document.title = `Simulateur de Salaire - ${title}`;
+  }, [experience, title]);
 
-    setExperience({ title: newExperience!.title, years: value });
-  };
-
-  const yearsLabel = (years: number = experience.years) => {
+  const getYearsLabel = (years: number = experience) => {
     if (years === 0) return "Première année";
     if (years === 1) return `1 an`;
     if (years > 12) return `12+ ans`;
     return `${years}\u00A0ans`;
   };
 
+  const onChange = (value: Years) => {
+    setExperience(value);
+    experienceRef.current = value;
+  };
+
   return (
     <div className="w-full max-w-5xl">
-      <h2 className="mb-4 text-2xl font-semibold text-adv-gold">{experience.title}</h2>
+      <h2 className="mb-4 text-2xl font-semibold text-adv-gold">{title}</h2>
       <h3 className="mb-4 text-lg">
         {`Développement en entreprise\u00A0:\u00A0`}
-        <br className="sm:hidden" />
-        <span className="text-adv-gold">{`${yearsLabel()}`}</span>
+        <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
       </h3>
       <ReactSlider
         className="my-8 flex flex-col justify-center"
@@ -45,18 +52,18 @@ function ExperienceSlider() {
         )}
         thumbClassName={clsx(
           "h-6 aspect-square",
-          experience.title.includes("Junior") && "bg-lime-400",
-          experience.title.includes("Intermédiaire") && "bg-adv-gold",
-          experience.title.includes("Senior") && "bg-orange-500",
+          experience < 5 && "bg-lime-400",
+          experience >= 5 && experience < 10 && "bg-adv-gold",
+          experience >= 10 && "bg-orange-500",
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
         )}
         trackClassName="bg-adv-gold h-1.5 rounded-full"
         min={0}
         max={13}
-        value={experience.years}
+        value={experience}
         onChange={onChange}
-        marks={[0, 3, 5, 8, 10]}
+        marks={[0, 3, 5, 8, 10, 13]}
       />
     </div>
   );

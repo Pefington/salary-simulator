@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 import DailyRateSlider from "./DailyRateSlider";
 import ExperienceSlider from "./ExperienceSlider";
+import SalaryResult from "./SalaryResult";
 import YearlyWorkedDaysSlider from "./YearlyWorkedDaysSlider";
 
 function SalaryForm() {
@@ -19,6 +20,7 @@ function SalaryForm() {
       <ExperienceSlider />
       <DailyRateSlider />
       <YearlyWorkedDaysSlider />
+      <SalaryResult />
     </section>
   );
 }

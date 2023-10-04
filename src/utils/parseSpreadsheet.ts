@@ -46,14 +46,15 @@ gridSheet.eachRow((_, rowNumber) => {
   if (rowNumber >= firstRow && rowNumber < totalRow) {
     const gradeName = getValue(gridSheet, `A${rowNumber}`) as string;
 
+    const sheetResult = getValue(gridSheet, `K${rowNumber}`) as Euros;
+
     const gradeValues = {
       monthlyBaseSalary: getValue(gridSheet, `B${rowNumber}`) as Euros,
-      yearlyBaseSalary: getValue(gridSheet, `D${rowNumber}`) as Euros,
       minDailyRate: getValue(gridSheet, `H${rowNumber}`) as Euros,
-      dailyRate: getValue(gridSheet, `AB${rowNumber}`) as Euros,
       transport: getValue(gridSheet, `T${rowNumber}`) as Euros,
       mutual: getValue(gridSheet, `V${rowNumber}`) as Euros,
       ticketsRestaurant: getValue(gridSheet, `X${rowNumber}`) as Euros,
+      defaultYearlyGrossSalary: parseFloat(sheetResult.toFixed(2)),
     };
 
     payGrades[gradeName] = gradeValues;

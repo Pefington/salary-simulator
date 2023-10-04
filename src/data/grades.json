@@ -1,56 +1,50 @@
 {
   "Junior": {
     "monthlyBaseSalary": 2700,
-    "yearlyBaseSalary": 32400,
     "minDailyRate": 350,
-    "dailyRate": 350,
     "transport": 37.6,
     "mutual": 60,
-    "ticketsRestaurant": 112.56
+    "ticketsRestaurant": 112.56,
+    "defaultYearlyGrossSalary": 35168.66
   },
   "Junior+": {
     "monthlyBaseSalary": 3000,
-    "yearlyBaseSalary": 36000,
     "minDailyRate": 350,
-    "dailyRate": 350,
     "transport": 37.6,
     "mutual": 60,
-    "ticketsRestaurant": 112.56
+    "ticketsRestaurant": 112.56,
+    "defaultYearlyGrossSalary": 38812.76
   },
   "Confirmé": {
     "monthlyBaseSalary": 3300,
-    "yearlyBaseSalary": 39600,
     "minDailyRate": 350,
-    "dailyRate": 350,
     "transport": 37.6,
     "mutual": 60,
-    "ticketsRestaurant": 112.56
+    "ticketsRestaurant": 112.56,
+    "defaultYearlyGrossSalary": 42456.86
   },
   "Confirmé+": {
     "monthlyBaseSalary": 3500,
-    "yearlyBaseSalary": 42000,
     "minDailyRate": 370,
-    "dailyRate": 370,
     "transport": 37.6,
     "mutual": 60,
-    "ticketsRestaurant": 112.56
+    "ticketsRestaurant": 112.56,
+    "defaultYearlyGrossSalary": 44894.32
   },
   "Senior": {
     "monthlyBaseSalary": 3900,
-    "yearlyBaseSalary": 46800,
     "minDailyRate": 390,
-    "dailyRate": 390,
     "transport": 37.6,
     "mutual": 60,
-    "ticketsRestaurant": 112.56
+    "ticketsRestaurant": 112.56,
+    "defaultYearlyGrossSalary": 49779.33
   },
   "Senior+": {
     "monthlyBaseSalary": 4200,
-    "yearlyBaseSalary": 50400,
     "minDailyRate": 410,
-    "dailyRate": 410,
     "transport": 37.6,
     "mutual": 60,
-    "ticketsRestaurant": 112.56
+    "ticketsRestaurant": 112.56,
+    "defaultYearlyGrossSalary": 53443.08
   }
 }

@@ -1,28 +1,29 @@
-import payGrades from '../data/grades.json';
 import ssData from '../data/ssData.json';
-import { Euros, PayGrade, PayGrades } from '../types';
+import { selectedExperience, selectedRate, store } from '../state/jotai';
+import { Euros, PayGrade, Years } from '../types';
+import { getPayGrade } from './helpers';
 
-const typedPayGrades: PayGrades = payGrades;
+const storedExperience = store.get(selectedExperience);
+const storedRate = store.get(selectedRate);
+const storedDaysWorked = store.get(selectedExperience);
 
-export const getYearlyGrossSalary = (
-  payGradeKey: string,
-  dailyRate: Euros,
-  daysWorkedInYear: number,
+export const updateYearlyGrossSalary = (
+  experience: Years = storedExperience,
+  dailyRate: Euros = storedRate,
+  daysWorkedInYear: number = storedDaysWorked,
 ): Euros => {
-  const grade = typedPayGrades[payGradeKey];
+  const grade = getPayGrade(experience);
 
-  if (!grade) {
-    throw new Error(`No grade found for ${payGradeKey}. Check capitalisation.`);
-  }
+  const { monthlyBaseSalary, mutual, ticketsRestaurant, transport } = grade;
 
-  const { yearlyBaseSalary, mutual, ticketsRestaurant, transport } = grade;
+  const yearlyBaseSalary = monthlyBaseSalary * 12;
   const variablePay = getVariable(grade, dailyRate) * daysWorkedInYear;
   const restaurantTicketPay = ticketsRestaurant * 11;
   const transportPay = transport * 11;
   const socialSecurityPay = getSocialSecurity(grade, dailyRate) * 12;
   const mutualPay = mutual * 12;
 
-  return parseFloat(
+  const roundedResult = parseFloat(
     (
       yearlyBaseSalary +
       variablePay +
@@ -32,6 +33,8 @@ export const getYearlyGrossSalary = (
       mutualPay
     ).toFixed(2),
   );
+
+  return roundedResult;
 };
 
 function getVariable(grade: PayGrade, dailyRate: Euros): Euros {

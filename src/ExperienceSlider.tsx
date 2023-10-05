@@ -1,26 +1,29 @@
 import clsx from "clsx";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
 import ReactSlider from "react-slider";
 
-import { selectedExperience } from "./state/jotai";
+import { selectedExperience, selectedRate } from "./state/jotai";
 import { Years } from "./types";
-import { findTitle } from "./utils/helpers";
+import { findTitle, getPayGrade } from "./utils/helpers";
 
 function ExperienceSlider() {
   const [experience, setExperience] = useAtom(selectedExperience);
+  const setDailyRate = useSetAtom(selectedRate);
+
   const [title, setTitle] = useState(findTitle(experience));
 
   const experienceRef = useRef(experience);
 
   useEffect(() => {
     experienceRef.current = experience;
+    setTitle(findTitle(experience));
   }, [experience]);
 
   useEffect(() => {
-    setTitle(findTitle(experience));
     document.title = `Simulateur de Salaire - ${title}`;
-  }, [experience, title]);
+    setDailyRate(getPayGrade(experience).minDailyRate);
+  }, [title]);
 
   const getYearsLabel = (years: number = experience) => {
     if (years === 0) return "Première\u00A0année";

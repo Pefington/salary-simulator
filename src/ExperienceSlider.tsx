@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useAtom, useSetAtom } from "jotai";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 
 import { selectedExperience, selectedRate } from "./state/jotai";
@@ -13,10 +13,7 @@ function ExperienceSlider() {
 
   const [title, setTitle] = useState(findTitle(experience));
 
-  const experienceRef = useRef(experience);
-
   useEffect(() => {
-    experienceRef.current = experience;
     setTitle(findTitle(experience));
   }, [experience]);
 
@@ -34,7 +31,6 @@ function ExperienceSlider() {
 
   const onChange = (value: Years) => {
     setExperience(value);
-    experienceRef.current = value;
   };
 
   return (

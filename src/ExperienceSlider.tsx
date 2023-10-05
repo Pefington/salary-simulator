@@ -23,9 +23,9 @@ function ExperienceSlider() {
   }, [title]);
 
   const getYearsLabel = (years: number = experience) => {
-    if (years === 0) return "Première\u00A0année";
-    if (years === 1) return `1 an`;
-    if (years > 12) return `12+ ans`;
+    if (years === 0) return "<\u00A01\u00A0an";
+    if (years === 1) return `1\u00A0an`;
+    if (years > 12) return `12+\u00A0ans`;
     return `${years}\u00A0ans`;
   };
 
@@ -37,7 +37,7 @@ function ExperienceSlider() {
     <div className="w-full max-w-5xl">
       <h2 className="mb-4 text-2xl font-semibold text-adv-gold">{title}</h2>
       <h3 className="mb-4 text-lg">
-        {`Développement en entreprise\u00A0:\u00A0`}
+        {`Développement\u00A0en\u00A0entreprise\u00A0:\u00A0`}
         <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
       </h3>
       <ReactSlider

@@ -52,9 +52,7 @@ function ExperienceSlider() {
         )}
         thumbClassName={clsx(
           "h-6 aspect-square",
-          experience < 5 && "bg-lime-400",
-          experience >= 5 && experience < 10 && "bg-adv-gold",
-          experience >= 10 && "bg-orange-500",
+          "bg-adv-gold",
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
         )}

@@ -7,7 +7,7 @@ import { resolvePath } from './pathResolver';
 const workbook = new Excel.Workbook();
 
 try {
-  await workbook.xlsx.readFile(resolvePath('../data/Calcul salaires.xlsm'));
+  await workbook.xlsx.readFile(resolvePath('../data/spreadsheet.xlsm'));
 } catch (error) {
   console.log(error);
 }

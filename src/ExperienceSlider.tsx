@@ -20,7 +20,7 @@ function ExperienceSlider() {
   useEffect(() => {
     document.title = `Simulateur de Salaire - ${title}`;
     setDailyRate(getPayGrade(experience).minDailyRate);
-  }, [title]);
+  }, [experience, setDailyRate, title]);
 
   const getYearsLabel = (years: number = experience) => {
     if (years === 0) return "<\u00A01\u00A0an";

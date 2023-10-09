@@ -1,11 +1,13 @@
 import clsx from "clsx";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import ReactSlider from "react-slider";
 
-import { selectedRate } from "./state/jotai";
+import { selectedExperience, selectedRate } from "./state/jotai";
+import { getPayGrade } from "./utils/helpers";
 
 function DailyRateSlider() {
   const [dailyRate, setDailyRate] = useAtom(selectedRate);
+  const experience = useAtomValue(selectedExperience);
 
   const onChange = (value: number) => setDailyRate(value);
 
@@ -31,7 +33,7 @@ function DailyRateSlider() {
           "bg-adv-gold",
         )}
         trackClassName="bg-adv-gold h-1.5 rounded-full"
-        min={350}
+        min={getPayGrade(experience).minDailyRate}
         max={1000}
         step={10}
         value={dailyRate}

@@ -27,9 +27,7 @@ This application is built using [Vite](https://vitejs.dev/guide) and [React](htt
 
 `bun dev` starts the development server
 
-### Updating the data, the Excel parser
-
----
+### Data and the Excel parser
 
 grades.json are the paygrades
 
@@ -38,10 +36,16 @@ grades.json are the paygrades
   "monthlyBaseSalary": 2700,
   "minDailyRate": 350,
   ...
+  "defaultYearlyGrossSalary": 35168.66
 },
 "Junior+": {
   ...
 ```
+
+The defaultYearlyGrossSalary is taken in the result column on parsing.
+It is not used by the calculator but is checked against the calculated result when running the tests.
+
+---
 
 ssData.json is social security data
 

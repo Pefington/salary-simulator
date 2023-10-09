@@ -1,6 +1,6 @@
 import "./tailwind.css";
 
-import SalaryForm from "./SalaryForm";
+import SalaryForm from "./components/SalaryForm/SalaryForm";
 
 function App() {
   return (

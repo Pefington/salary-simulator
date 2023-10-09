@@ -2,8 +2,8 @@ import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
 import ReactSlider from "react-slider";
 
-import { selectedExperience, selectedRate } from "./state/jotai";
-import { getPayGrade } from "./utils/helpers";
+import { selectedExperience, selectedRate } from "../../state/jotai";
+import { getPayGrade } from "../../utils/helpers";
 
 function DailyRateSlider() {
   const [dailyRate, setDailyRate] = useAtom(selectedRate);

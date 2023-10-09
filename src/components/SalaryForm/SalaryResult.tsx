@@ -1,8 +1,8 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { salaryResult, selectedDays, selectedExperience, selectedRate } from "./state/jotai";
-import { updateYearlyGrossSalary } from "./utils/calculator";
+import { salaryResult, selectedDays, selectedExperience, selectedRate } from "../../state/jotai";
+import { updateYearlyGrossSalary } from "../../utils/calculator";
 
 function SalaryResult() {
   const result = useAtomValue(salaryResult);

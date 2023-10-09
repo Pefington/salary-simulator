@@ -3,9 +3,9 @@ import { useAtom, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 
-import { selectedExperience, selectedRate } from "./state/jotai";
-import { Years } from "./types";
-import { findTitle, getPayGrade } from "./utils/helpers";
+import { selectedExperience, selectedRate } from "../../state/jotai";
+import { Years } from "../../types";
+import { findTitle, getPayGrade } from "../../utils/helpers";
 
 function ExperienceSlider() {
   const [experience, setExperience] = useAtom(selectedExperience);

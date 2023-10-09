@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { useAtom } from "jotai";
 import ReactSlider from "react-slider";
 
-import { selectedDays } from "./state/jotai";
+import { selectedDays } from "../../state/jotai";
 
 function YearlyWorkedDaysSlider() {
   const [workedDays, setWorkedDays] = useAtom(selectedDays);

@@ -1,8 +1,8 @@
 import Excel from 'exceljs';
 
 import { CellCoord, Euros, PayGrades, Percentage, Sheet } from '../types';
-import { resolvePath } from './resolvePath';
-import { writeJson } from './writeJson';
+import { writeJson } from './jsonWriter';
+import { resolvePath } from './pathResolver';
 
 const workbook = new Excel.Workbook();
 

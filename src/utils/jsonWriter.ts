@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 
-import { resolvePath } from './resolvePath';
+import { resolvePath } from './pathResolver';
 
 const dataPath = resolvePath('../data');
 

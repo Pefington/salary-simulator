@@ -1,9 +1,9 @@
 import clsx from "clsx";
 
-import SalaryResult from "./SalaryForm/SalaryResult";
-import Sliders from "./SalaryForm/Sliders";
+import SalaryResult from "./04simulateur/SalaryResult";
+import Sliders from "./04simulateur/Sliders";
 
-function SalaryForm() {
+function Simulateur() {
   return (
     <>
       <h2
@@ -27,4 +27,4 @@ function SalaryForm() {
   );
 }
 
-export default SalaryForm;
+export default Simulateur;

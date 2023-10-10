@@ -35,11 +35,13 @@ function ExperienceSlider() {
 
   return (
     <div className="w-full max-w-5xl">
-      <h2 className="mb-4 text-2xl font-semibold text-adv-gold">{title}</h2>
-      <h3 className="mb-4 text-lg">
-        {`Développement\u00A0en\u00A0entreprise\u00A0:\u00A0`}
-        <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
-      </h3>
+      <div className="flex flex-wrap justify-between">
+        <h3 className="pr-12 text-lg">
+          {`Années\u00A0d'expérience\u00A0:\u00A0`}
+          <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
+        </h3>
+        <h2 className="text-2xl font-semibold text-adv-gold">Niveau : {title}</h2>
+      </div>
       <ReactSlider
         className="my-8 flex flex-col justify-center"
         markClassName={clsx(

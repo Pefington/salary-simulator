@@ -11,7 +11,7 @@
 
   html {
     font-family: 'Roboto Flex Variable', sans-serif;
-    @apply min-h-screen bg-gradient-to-b from-[#061943] to-[#061332] text-white;
+    @apply min-h-screen bg-slate-900 text-amber-50;
   }
 
   main {

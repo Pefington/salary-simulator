@@ -12,17 +12,27 @@ function SalaryResult() {
 
   const setSalaryResult = useSetAtom(salaryResult);
 
+  const roundedResult = Math.floor(result);
+  const monthlyResult = Math.floor(result / 12);
+
   useEffect(() => {
     const newSalary = updateYearlyGrossSalary(experience, rate, days);
     setSalaryResult(newSalary);
   }, [experience, rate, days, setSalaryResult]);
 
   return (
-    <div className="w-full max-w-5xl">
-      <h3 className="mb-4 text-4xl">
-        {`Salaire Annuel Brut\u00A0:\u00A0`}
-        <span className="text-adv-gold">{`${Math.floor(result)}\u00A0€`}</span>
-      </h3>
+    <div className="flex min-w-max flex-col md:pl-5">
+      <h4 className="text-xl">Rémunération annuelle brute :</h4>
+      <p className="pb-6 pt-2 text-2xl text-adv-gold">{`${roundedResult} €`}</p>
+      <h4 className="text-xl">Rémunération mensuelle brute :</h4>
+      <p className="pb-6 pt-2 text-2xl text-adv-gold">{`${monthlyResult} €`}</p>
+      <p className="text-lg">Cette rémunération inclut :</p>
+      <ul className="list-inside list-disc">
+        <li>Transports</li>
+        <li>Tickets restaurant</li>
+        <li>Prévoyance</li>
+        <li>*RTT</li>
+      </ul>
     </div>
   );
 }

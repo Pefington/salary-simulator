@@ -12,11 +12,11 @@ function DailyRateSlider() {
   const onChange = (value: number) => setDailyRate(value);
 
   return (
-    <div className="w-full max-w-5xl">
-      <h3 className="mb-4 text-lg">
+    <div className="w-full">
+      <h4 className="mb-4 text-xl">
         {`Tarif Journalier Moyen\u00A0:\u00A0`}
         <span className="text-adv-gold">{dailyRate}</span>
-      </h3>
+      </h4>
       <ReactSlider
         className="my-8 flex flex-col justify-center"
         markClassName={clsx(

@@ -13,7 +13,7 @@ function DailyRateSlider() {
 
   return (
     <div className="w-full">
-      <h4 className="mb-4 text-xl">
+      <h4 className="mb-4">
         {`Tarif Journalier Moyen\u00A0:\u00A0`}
         <span className="text-adv-gold">{dailyRate}</span>
       </h4>

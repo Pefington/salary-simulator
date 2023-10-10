@@ -15,6 +15,26 @@
   }
 
   main {
-    @apply max-w-screen-xl mx-auto;
+    @apply mx-auto max-w-screen-xl;
+  }
+
+  ul {
+    @apply list-inside list-disc text-lg space-y-2;
+  }
+
+  h1 {
+    @apply text-center text-5xl font-extrabold;
+  }
+
+  h2 {
+    @apply pb-2 pt-6 text-center text-4xl font-semibold sm:pt-10;
+  }
+
+  h3 {
+    @apply text-2xl font-medium;
+  }
+
+  h4 {
+    @apply text-xl font-medium;
   }
 }

@@ -1,9 +1,9 @@
 import clsx from "clsx";
 
-import DailyRateSlider from "./DailyRateSlider";
-import ExperienceSlider from "./ExperienceSlider";
-import SalaryResult from "./SalaryResult";
-import YearlyWorkedDaysSlider from "./YearlyWorkedDaysSlider";
+import DailyRateSlider from "./SalaryForm/DailyRateSlider";
+import ExperienceSlider from "./SalaryForm/ExperienceSlider";
+import SalaryResult from "./SalaryForm/SalaryResult";
+import YearlyWorkedDaysSlider from "./SalaryForm/YearlyWorkedDaysSlider";
 
 function SalaryForm() {
   return (

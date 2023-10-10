@@ -2,6 +2,7 @@ import "./tailwind.css";
 
 import ADNTium from "./components/01adnTium";
 import Adventuriers from "./components/02adventuriers";
+import Renumeration from "./components/03renumeration";
 import SalaryForm from "./components/SalaryForm";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <>
       <ADNTium />
       <Adventuriers />
+      <Renumeration />
       <SalaryForm />
     </>
   );

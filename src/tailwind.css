@@ -37,4 +37,8 @@
   h4 {
     @apply text-xl font-medium;
   }
+
+  p {
+    @apply text-lg;
+  }
 }

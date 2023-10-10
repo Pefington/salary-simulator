@@ -6,6 +6,7 @@ import Renumeration from "./components/03renumeration";
 import Simulateur from "./components/04simulateur";
 import Intermission from "./components/05intermission";
 import Profils from "./components/06profils";
+import Contact from "./components/07contact";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Simulateur />
       <Intermission />
       <Profils />
+      <Contact />
     </>
   );
 }

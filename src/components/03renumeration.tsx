@@ -11,8 +11,8 @@ function Renumeration() {
         </h3>
         <p>La rémunération fixe est basée sur les principes fondamentaux suivants :</p>
         <ul>
-          <li>Un fixe mensuel (qui garantit la prise en charge de 3 mois d'intermission) ;</li>
-          <li>L'adventurier récupère au maximum le surplus du TJM</li>
+          <li>un fixe mensuel (qui garantit la prise en charge de 3 mois d'intermission)</li>
+          <li>l'adventurier récupère au maximum le surplus du TJM.</li>
         </ul>
       </section>
     </>

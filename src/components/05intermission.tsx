@@ -12,12 +12,12 @@ function Intermission() {
         <p>À nos yeux, cette période offre de multiples opportunités pour :</p>
         <ul>
           <li>
-            Renforcer ses compétences grâce à l'accès illimité aux formations et améliorer son
-            positionnement ;
+            renforcer ses compétences grâce à l'accès illimité aux formations et améliorer son
+            positionnement
           </li>
-          <li>Capter une nouvelle technologie et la transmettre à l'équipe ;</li>
+          <li>capter une nouvelle technologie et la transmettre à l'équipe</li>
           <li>
-            Travailler une réorientation de son Cap Carrière, en lien avec la stratégie de
+            travailler une réorientation de son Cap Carrière, en lien avec la stratégie de
             l'entreprise.
           </li>
         </ul>

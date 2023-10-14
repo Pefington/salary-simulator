@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    /* @apply outline outline-1 outline-lime-400 */
+    /* @apply outline outline-1 outline-lime-400; */
   }
 
   html {
@@ -19,27 +19,31 @@
   } */
 
   section {
-    @apply flex flex-col gap-5 px-5 py-20 even:bg-sky-900 sm:px-10;
+    @apply px-5 py-10 even:bg-sky-900 sm:px-10;
+  }
+
+  section > div {
+    @apply mx-auto flex max-w-screen-xl flex-col gap-5;
   }
 
   ul {
-    @apply list-inside list-disc space-y-2 text-lg;
+    @apply list-inside list-disc space-y-4 text-lg leading-loose;
   }
 
   /* h1 {
-    @apply text-center text-5xl font-extrabold;
+    @apply text-center text-4xl font-extrabold;
   } */
 
   h2 {
-    @apply pb-2 text-center text-4xl font-semibold text-adv-gold;
+    @apply pb-2 text-center text-3xl font-semibold leading-relaxed text-adv-gold;
   }
 
   h3 {
-    @apply text-2xl font-medium;
+    @apply text-center text-xl font-medium leading-relaxed;
   }
 
   h4 {
-    @apply text-xl font-medium;
+    @apply text-lg font-medium;
   }
 
   p {

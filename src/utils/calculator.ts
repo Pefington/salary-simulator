@@ -16,23 +16,23 @@ export const updateYearlyGrossSalary = (
 
   const { monthlyBaseSalary, mutual, ticketsRestaurant, transport } = grade;
 
-  const yearlyBaseSalary = monthlyBaseSalary * 12;
-  const variablePay = getVariable(grade, dailyRate) * daysWorkedInYear;
+  const yearlyBaseSalary = ((monthlyBaseSalary * 12) / 218) * daysWorkedInYear;
+  const variablePay = getVariable( grade, dailyRate ) * daysWorkedInYear;
+
   const restaurantTicketPay = ticketsRestaurant * 11;
   const transportPay = transport * 11;
   const socialSecurityPay = getSocialSecurity(grade, dailyRate) * 12;
   const mutualPay = mutual * 12;
 
-  const roundedResult = parseFloat(
-    (
-      yearlyBaseSalary +
-      variablePay +
-      restaurantTicketPay +
-      transportPay +
-      socialSecurityPay +
-      mutualPay
-    ).toFixed(2),
-  );
+  const result =
+    yearlyBaseSalary +
+    variablePay +
+    restaurantTicketPay +
+    transportPay +
+    socialSecurityPay +
+    mutualPay;
+
+  const roundedResult = parseFloat(result.toFixed(2));
 
   return roundedResult;
 };

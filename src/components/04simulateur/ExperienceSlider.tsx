@@ -29,9 +29,7 @@ function ExperienceSlider() {
     return `${years}\u00A0ans`;
   };
 
-  const onChange = (value: Years) => {
-    setExperience(value);
-  };
+  const onChange = (value: Years) => setExperience(value);
 
   return (
     <div className="w-full">
@@ -40,7 +38,7 @@ function ExperienceSlider() {
           {`Années\u00A0d'expérience\u00A0:\u00A0`}
           <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
         </h4>
-        <h3 className="text-adv-gold font-bold">Niveau : {title}</h3>
+        <h3 className="font-bold text-adv-gold">Niveau : {title}</h3>
       </div>
       <ReactSlider
         className="my-8 flex flex-col justify-center"

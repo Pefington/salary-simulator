@@ -1,23 +1,18 @@
 import ssData from '../data/ssData.json';
-import { selectedExperience, selectedRate, store } from '../state/jotai';
 import { Euros, PayGrade, Years } from '../types';
 import { getPayGrade } from './helpers';
 
-const storedExperience = store.get(selectedExperience);
-const storedRate = store.get(selectedRate);
-const storedDaysWorked = store.get(selectedExperience);
-
 export const updateYearlyGrossSalary = (
-  experience: Years = storedExperience,
-  dailyRate: Euros = storedRate,
-  daysWorkedInYear: number = storedDaysWorked,
+  experience: Years,
+  dailyRate: Euros,
+  daysWorkedInYear: number,
 ): Euros => {
   const grade = getPayGrade(experience);
 
   const { monthlyBaseSalary, mutual, ticketsRestaurant, transport } = grade;
 
   const yearlyBaseSalary = ((monthlyBaseSalary * 12) / 218) * daysWorkedInYear;
-  const variablePay = getVariable( grade, dailyRate ) * daysWorkedInYear;
+  const variablePay = getVariable(grade, dailyRate) * daysWorkedInYear;
 
   const restaurantTicketPay = ticketsRestaurant * 11;
   const transportPay = transport * 11;

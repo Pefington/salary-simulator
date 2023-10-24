@@ -2,7 +2,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { useEffect } from "react";
 
 import { salaryResult, selectedDays, selectedExperience, selectedRate } from "../../state/jotai";
-import { updateYearlyGrossSalary } from "../../utils/calculator";
+import { getYearlyGrossSalary } from "../../utils/getSalary";
 
 function SalaryResult() {
   const experience = useAtomValue(selectedExperience);
@@ -14,7 +14,7 @@ function SalaryResult() {
   const monthlyResult = Math.floor(result / 12);
 
   useEffect(() => {
-    const newSalary = updateYearlyGrossSalary(experience, rate, days);
+    const newSalary = getYearlyGrossSalary(experience, rate, days);
     setResult(newSalary);
   }, [experience, rate, days, setResult]);
 

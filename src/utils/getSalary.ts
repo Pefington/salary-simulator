@@ -2,7 +2,7 @@ import ssData from '../data/ssData.json';
 import { Euros, PayGrade, Years } from '../types';
 import { getPayGrade } from './helpers';
 
-export const updateYearlyGrossSalary = (
+export const getYearlyGrossSalary = (
   experience: Years,
   dailyRate: Euros,
   daysWorkedInYear: number,

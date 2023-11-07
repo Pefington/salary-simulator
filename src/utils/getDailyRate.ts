@@ -13,8 +13,6 @@ export const getDailyRateFromTarget = (
   while (usedRate < 1000) {
     achievedSalary = getYearlyGrossSalary(experience, usedRate, daysWorkedInYear);
 
-    console.log(usedRate, achievedSalary);
-
     if (achievedSalary >= targetSalary) {
       break;
     }

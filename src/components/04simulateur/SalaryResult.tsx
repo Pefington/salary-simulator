@@ -10,25 +10,27 @@ import {
   selectedExperience,
   selectedRate,
 } from "../../state/jotai";
+import { getDailyRateFromTarget } from "../../utils/getDailyRate";
 import { getYearlyGrossSalary } from "../../utils/getSalary";
 
 function SalaryResult() {
   const experience = useAtomValue(selectedExperience);
-  const rate = useAtomValue(selectedRate);
   const days = useAtomValue(selectedDays);
 
   const [salaryLocked, setSalaryLocked] = useAtom(lockSalary);
-  const [result, setResult] = useAtom(salaryResult);
+  const [rate, setRate] = useAtom(selectedRate);
+  const [salary, setSalary] = useAtom(salaryResult);
 
   const salaryInputRef = useRef<HTMLInputElement>(null);
 
-  const roundedResult = Math.floor(result);
-  const monthlyResult = Math.floor(result / 12);
+  const roundedResult = Math.floor(salary);
+  const monthlyResult = Math.floor(salary / 12);
 
-  useEffect(() => {
-    const newSalary = getYearlyGrossSalary(experience, rate, days);
-    setResult(newSalary);
-  }, [experience, rate, days, setResult]);
+  useEffect(
+    () => setSalary(getYearlyGrossSalary(experience, rate, days)),
+
+    [experience, rate, days],
+  );
 
   useEffect(() => {
     if (salaryLocked) {
@@ -36,8 +38,9 @@ function SalaryResult() {
     }
   }, [salaryLocked]);
 
-  const handleLockSalary = () => {
-    setSalaryLocked(!salaryLocked);
+  const handleSubmitSalary = () => {
+    setRate(getDailyRateFromTarget(experience, salary, days));
+    salaryInputRef.current?.blur();
   };
 
   return (
@@ -58,14 +61,16 @@ function SalaryResult() {
               ref={salaryInputRef}
               className={clsx(
                 "text-2xl font-bold text-adv-gold",
-                "max-w-[70px]",
+                "max-w-[85px]",
                 "max-h-[40px]",
                 "bg-sky-950",
                 "",
               )}
               type="text"
               value={roundedResult}
-              onChange={({ target }) => setResult(Number(target.value))}
+              onClick={({ currentTarget }) => currentTarget.select()}
+              onChange={({ target }) => setSalary(parseInt(target.value))}
+              onKeyDown={({ key }) => key === "Enter" && handleSubmitSalary()}
             />
             <span className="-ml-[12.5px] text-2xl font-bold text-adv-gold">€</span>
           </>
@@ -86,7 +91,7 @@ function SalaryResult() {
             "",
             "",
           )}
-          onClick={handleLockSalary}
+          onClick={() => setSalaryLocked(!salaryLocked)}
         />
       </div>
       <h4>Rémunération mensuelle brute&nbsp;:</h4>

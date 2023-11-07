@@ -29,7 +29,7 @@ function SalaryResult() {
   useEffect(
     () => setSalary(getYearlyGrossSalary(experience, rate, days)),
 
-    [experience, rate, days],
+    [experience, rate, days, setSalary],
   );
 
   useEffect(() => {

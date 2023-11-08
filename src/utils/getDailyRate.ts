@@ -30,9 +30,8 @@ export const getDailyRateFromTarget = (
     }
 
     usedRate += incrementStep;
+    // console.log(usedRate, achievedSalary)
   }
 
   return usedRate;
 };
-
-getDailyRateFromTarget(3, 45000, 218);

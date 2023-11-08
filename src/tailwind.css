@@ -14,12 +14,12 @@
     @apply bg-sky-950 text-amber-50;
   }
 
-  /* main {
-    @apply mx-auto;
-  } */
+  main {
+    @apply snap-y scroll-smooth h-full;
+  }
 
   section {
-    @apply px-5 py-10 even:bg-sky-900 sm:px-10;
+    @apply px-5 py-10 odd:bg-sky-900 sm:px-10 snap-start;
   }
 
   section > div {

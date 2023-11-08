@@ -1,13 +1,17 @@
 import clsx from "clsx";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import ReactSlider from "react-slider";
 
-import { selectedDays } from "../../state/jotai";
+import { lockSalary, selectedDays } from "../../state/jotai";
 
 function YearlyWorkedDaysSlider() {
   const [workedDays, setWorkedDays] = useAtom(selectedDays);
+  const setSalaryLocked = useSetAtom(lockSalary);
 
-  const onChange = (value: number) => setWorkedDays(value);
+  const handleChange = (value: number) => {
+    setSalaryLocked(false);
+    setWorkedDays(value);
+  };
 
   return (
     <div className="w-full">
@@ -34,7 +38,7 @@ function YearlyWorkedDaysSlider() {
         min={152}
         max={235}
         value={workedDays}
-        onChange={onChange}
+        onChange={handleChange}
         marks={[218]}
       />
     </div>

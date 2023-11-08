@@ -3,12 +3,13 @@ import { useAtom, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 
-import { selectedExperience, selectedRate } from "../../state/jotai";
+import { lockSalary, selectedExperience, selectedRate } from "../../state/jotai";
 import { Years } from "../../types";
 import { findTitle, getPayGrade } from "../../utils/helpers";
 
 function ExperienceSlider() {
   const [experience, setExperience] = useAtom(selectedExperience);
+  const setSalaryLocked = useSetAtom(lockSalary);
   const setDailyRate = useSetAtom(selectedRate);
 
   const [title, setTitle] = useState(findTitle(experience));
@@ -29,7 +30,10 @@ function ExperienceSlider() {
     return `${years}\u00A0ans`;
   };
 
-  const onChange = (value: Years) => setExperience(value);
+  const handleChange = (value: Years) => {
+    setExperience(value);
+    setSalaryLocked(false);
+  };
 
   return (
     <div className="w-full">
@@ -59,7 +63,7 @@ function ExperienceSlider() {
         min={0}
         max={13}
         value={experience}
-        onChange={onChange}
+        onChange={handleChange}
         marks={[0, 3, 5, 8, 10, 13]}
       />
     </div>

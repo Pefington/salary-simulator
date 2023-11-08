@@ -2,21 +2,46 @@ import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
 import ReactSlider from "react-slider";
 
-import { selectedExperience, selectedRate } from "../../state/jotai";
+import { BullsEyeIcon } from "../../icons";
+import { lockSalary, selectedExperience, selectedRate } from "../../state/jotai";
 import { getPayGrade } from "../../utils/helpers";
 
 function DailyRateSlider() {
   const [dailyRate, setDailyRate] = useAtom(selectedRate);
+  const [salaryLocked, setSalaryLocked] = useAtom(lockSalary);
   const experience = useAtomValue(selectedExperience);
 
-  const onChange = (value: number) => setDailyRate(value);
+  const handleChange = (value: number) => {
+    setDailyRate(value);
+    setSalaryLocked(false);
+  };
+
+  const handleBullseyeClick = () => {
+    setSalaryLocked(false);
+  };
 
   return (
     <div className="w-full">
-      <h4 className="mb-4">
-        {`Tarif Journalier Moyen\u00A0:\u00A0`}
-        <span className="text-adv-gold">{dailyRate}</span>
-      </h4>
+      <div className="flex items-baseline">
+        <h4 className="mb-4">
+          {`Tarif Journalier Moyen\u00A0:\u00A0`}
+          <span className="text-adv-gold">{dailyRate}</span>
+        </h4>
+        {salaryLocked ? (
+          <BullsEyeIcon
+            height="14px"
+            className={clsx(
+              "transition-opacity duration-500 ease-in-out",
+              "fill-red-500",
+              "ml-2",
+              "",
+              "",
+            )}
+            title="Mode TJM cible."
+            onClick={handleBullseyeClick}
+          />
+        ) : null}
+      </div>
       <ReactSlider
         className="my-8 flex flex-col justify-center"
         markClassName={clsx(
@@ -30,14 +55,14 @@ function DailyRateSlider() {
           "h-6 aspect-square",
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
-          "bg-adv-gold",
+          salaryLocked ? "bg-red-500" : "bg-adv-gold",
         )}
         trackClassName="bg-adv-gold h-1.5 rounded-full"
         min={getPayGrade(experience).minDailyRate}
         max={1000}
         step={10}
         value={dailyRate}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
 import { useEffect, useRef } from "react";
 
-import { EditIcon } from "../../icons";
+import { BullsEyeIcon } from "../../icons";
 import {
   lockSalary,
   salaryResult,
@@ -25,6 +25,7 @@ function SalaryResult() {
 
   const roundedResult = Math.floor(salary);
   const monthlyResult = Math.floor(salary / 12);
+  const maxWidth = (roundedResult.toString().length - 0.1) * 17;
 
   useEffect(
     () => setSalary(getYearlyGrossSalary(experience, rate, days)),
@@ -33,66 +34,77 @@ function SalaryResult() {
   );
 
   useEffect(() => {
-    if (salaryLocked) {
-      salaryInputRef.current?.select();
-    }
+    // if (salaryLocked) {
+    salaryInputRef.current?.select();
+    // }
   }, [salaryLocked]);
+
+  const handleClick = () => {
+    setSalaryLocked(false);
+    salaryInputRef.current?.select();
+  };
+
+  const handleChange = (target: EventTarget & HTMLInputElement) => {
+    const value = target.value.replace(/\D/g, "");
+
+    setSalary(parseInt(value) || salary);
+  };
 
   const handleSubmitSalary = () => {
     setRate(getDailyRateFromTarget(experience, salary, days));
     salaryInputRef.current?.blur();
+    setSalaryLocked(true);
+  };
+
+  const handleBullseyeClick = () => {
+    setSalary(getYearlyGrossSalary(experience, rate, days));
+    setSalaryLocked(false);
   };
 
   return (
-    <div className="flex min-w-max flex-col md:pl-5">
+    <div className="flex flex-col md:pl-5">
       <h4>Rémunération annuelle brute&nbsp;:</h4>
       <div
         className={clsx(
           "flex items-baseline gap-4",
-          "max-w-min",
           "[&>:not(svg)]:mb-6 [&>:not(svg)]:mt-2",
-          "",
+          "max-w-min",
           "",
         )}
       >
-        {salaryLocked ? (
-          <>
-            <input
-              ref={salaryInputRef}
-              className={clsx(
-                "text-2xl font-bold text-adv-gold",
-                "max-w-[85px]",
-                "max-h-[40px]",
-                "bg-sky-950",
-                "",
-              )}
-              type="text"
-              value={roundedResult}
-              onClick={({ currentTarget }) => currentTarget.select()}
-              onChange={({ target }) => setSalary(parseInt(target.value))}
-              onKeyDown={({ key }) => key === "Enter" && handleSubmitSalary()}
-            />
-            <span className="-ml-[12.5px] text-2xl font-bold text-adv-gold">€</span>
-          </>
-        ) : (
-          <p className={clsx("text-2xl font-bold text-adv-gold", "", "", "", "", "")}>
-            {roundedResult}&nbsp;€
-          </p>
-        )}
-
-        <EditIcon
-          height="25px"
+        <input
+          ref={salaryInputRef}
+          style={{ maxWidth: `${maxWidth}px` }}
           className={clsx(
-            "translate-y-[3px]",
-            "transition-opacity duration-500 ease-in-out",
-            salaryLocked ? "fill-red-500" : "fill-adv-gold/50",
-            "hover:cursor-pointer hover:fill-adv-gold/100",
-            "",
+            "text-2xl font-bold text-adv-gold",
+            salaryLocked ? "bg-transparent" : "bg-sky-950",
             "",
             "",
           )}
-          onClick={() => setSalaryLocked(!salaryLocked)}
+          disabled={salaryLocked}
+          type="text"
+          value={roundedResult}
+          onClick={handleClick}
+          onChange={({ target }) => handleChange(target)}
+          onKeyDown={({ key }) => key === "Enter" && handleSubmitSalary()}
         />
+        <span className="-ml-[12.5px] mr-auto text-2xl font-bold text-adv-gold">€</span>
+
+        {salaryLocked ? (
+          <BullsEyeIcon
+            height="16px"
+            className={clsx(
+              // "translate-y-[1px]",
+              "transition-opacity duration-500 ease-in-out",
+              "fill-red-500",
+              "",
+              "",
+              "",
+            )}
+            title="Mode TJM cible."
+            onClick={handleBullseyeClick}
+          />
+        ) : null}
       </div>
       <h4>Rémunération mensuelle brute&nbsp;:</h4>
       <p className="pb-6 pt-2 text-2xl font-bold text-adv-gold">{`${monthlyResult} €`}</p>

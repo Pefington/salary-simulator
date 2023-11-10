@@ -11,15 +11,11 @@
 
   html {
     font-family: 'Roboto Flex Variable', sans-serif;
-    @apply bg-sky-950 text-amber-50;
-  }
-
-  main {
-    @apply snap-y scroll-smooth h-full;
+    @apply max-h-screen snap-y snap-proximity bg-sky-950 text-amber-50;
   }
 
   section {
-    @apply px-5 py-10 odd:bg-sky-900 sm:px-10 snap-start;
+    @apply snap-start px-5 py-10 odd:bg-sky-900 sm:px-10;
   }
 
   section > div {

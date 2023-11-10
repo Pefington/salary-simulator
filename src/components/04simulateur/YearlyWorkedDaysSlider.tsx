@@ -20,6 +20,7 @@ function YearlyWorkedDaysSlider() {
         <span className="text-adv-gold">{workedDays}</span>
       </h4>
       <ReactSlider
+        ariaLabel="Jours travaillés"
         className="my-8 flex flex-col justify-center"
         markClassName={clsx(
           "relative translate-x-full",

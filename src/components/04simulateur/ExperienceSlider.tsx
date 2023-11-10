@@ -45,6 +45,7 @@ function ExperienceSlider() {
         <h3 className="font-bold text-adv-gold">Niveau : {title}</h3>
       </div>
       <ReactSlider
+        ariaLabel="Années d'expérience"
         className="my-8 flex flex-col justify-center"
         markClassName={clsx(
           "relative translate-x-full",

@@ -25,7 +25,7 @@ function SalaryResult() {
 
   const roundedResult = Math.floor(salary);
   const monthlyResult = Math.floor(salary / 12);
-  const maxWidth = (roundedResult.toString().length - 0.1) * 17;
+  const maxWidth = roundedResult.toString().length * 14;
 
   useEffect(
     () => setSalary(getYearlyGrossSalary(experience, rate, days)),
@@ -74,6 +74,7 @@ function SalaryResult() {
       >
         <input
           ref={salaryInputRef}
+          aria-label="Salaire Annuel Brut"
           style={{ maxWidth: `${maxWidth}px` }}
           className={clsx(
             "text-2xl font-bold text-adv-gold",
@@ -94,7 +95,6 @@ function SalaryResult() {
           <BullsEyeIcon
             height="16px"
             className={clsx(
-              // "translate-y-[1px]",
               "transition-opacity duration-500 ease-in-out",
               "fill-red-500",
               "",

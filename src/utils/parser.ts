@@ -15,6 +15,8 @@ try {
 const gridSheet = workbook.getWorksheet(1);
 const dataSheet = workbook.getWorksheet(5);
 
+if (!gridSheet || !dataSheet) throw new Error('Could not find spreadsheet');
+
 const getValue = (sheet: Sheet, cell: CellCoord) => {
   const cellValue = sheet.getCell(cell).value;
 

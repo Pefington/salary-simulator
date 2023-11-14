@@ -33,11 +33,7 @@ function SalaryResult() {
     [experience, rate, days, setSalary],
   );
 
-  useEffect(() => {
-    // if (salaryLocked) {
-    salaryInputRef.current?.select();
-    // }
-  }, [salaryLocked]);
+  useEffect(() => salaryInputRef.current?.select(), [salaryLocked]);
 
   const handleClick = () => {
     setSalaryLocked(false);
@@ -69,7 +65,6 @@ function SalaryResult() {
           "flex items-baseline gap-4",
           "[&>:not(svg)]:mb-6 [&>:not(svg)]:mt-2",
           "max-w-min",
-          "",
         )}
       >
         <input
@@ -79,8 +74,6 @@ function SalaryResult() {
           className={clsx(
             "text-2xl font-bold text-adv-gold",
             salaryLocked ? "bg-transparent" : "bg-sky-950",
-            "",
-            "",
           )}
           disabled={salaryLocked}
           type="text"
@@ -94,13 +87,7 @@ function SalaryResult() {
         {salaryLocked ? (
           <BullsEyeIcon
             height="16px"
-            className={clsx(
-              "transition-opacity duration-500 ease-in-out",
-              "fill-red-500",
-              "",
-              "",
-              "",
-            )}
+            className={clsx("transition-opacity duration-500 ease-in-out", "fill-red-500")}
             title="Mode TJM cible."
             onClick={handleBullseyeClick}
           />

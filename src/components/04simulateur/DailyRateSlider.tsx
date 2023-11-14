@@ -30,13 +30,7 @@ function DailyRateSlider() {
         {salaryLocked ? (
           <BullsEyeIcon
             height="14px"
-            className={clsx(
-              "transition-opacity duration-500 ease-in-out",
-              "fill-red-500",
-              "ml-2",
-              "",
-              "",
-            )}
+            className={clsx("transition-opacity duration-500 ease-in-out", "fill-red-500", "ml-2")}
             title="Mode TJM cible."
             onClick={handleBullseyeClick}
           />

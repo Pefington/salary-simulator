@@ -72,8 +72,8 @@ function SalaryResult() {
           aria-label="Salaire Annuel Brut"
           style={{ maxWidth: `${maxWidth}px` }}
           className={clsx(
-            "text-2xl font-bold text-adv-gold",
-            salaryLocked ? "bg-transparent" : "bg-sky-950",
+            "text-2xl font-bold text-adv-gold rounded-sm",
+            salaryLocked ? "bg-transparent" : "bg-sky-900",
           )}
           disabled={salaryLocked}
           type="text"

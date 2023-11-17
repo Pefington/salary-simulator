@@ -28,7 +28,7 @@ function ExperienceSlider({ levelRef }: ExperienceSliderProps) {
     if (lockSalary) {
       const debounce = setTimeout(() => {
         levelRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 1000);
+      }, 3000);
 
       return () => clearTimeout(debounce);
     }

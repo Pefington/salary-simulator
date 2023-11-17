@@ -25,7 +25,6 @@ function SalaryResult() {
 
   const roundedResult = Math.floor(salary);
   const monthlyResult = Math.floor(salary / 12);
-  const maxWidth = roundedResult.toString().length * 14;
 
   useEffect(
     () => setSalary(getYearlyGrossSalary(experience, rate, days)),
@@ -33,10 +32,20 @@ function SalaryResult() {
     [experience, rate, days, setSalary],
   );
 
-  useEffect(() => salaryInputRef.current?.select(), [salaryLocked]);
+  useEffect(() => {
+    if (salaryLocked) {
+      const inputTimeout = setTimeout(() => {
+        salaryInputRef.current?.select();
+        setRate(getDailyRateFromTarget(experience, salary, days));
+      }, 1000);
+
+      return () => clearTimeout(inputTimeout);
+    } else salaryInputRef.current?.blur();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [salaryLocked, salary]);
 
   const handleClick = () => {
-    setSalaryLocked(false);
+    setSalaryLocked(true);
     salaryInputRef.current?.select();
   };
 
@@ -44,17 +53,6 @@ function SalaryResult() {
     const value = target.value.replace(/\D/g, "");
 
     setSalary(parseInt(value) || salary);
-  };
-
-  const handleSubmitSalary = () => {
-    setRate(getDailyRateFromTarget(experience, salary, days));
-    salaryInputRef.current?.blur();
-    setSalaryLocked(true);
-  };
-
-  const handleBullseyeClick = () => {
-    setSalary(getYearlyGrossSalary(experience, rate, days));
-    setSalaryLocked(false);
   };
 
   return (
@@ -70,26 +68,18 @@ function SalaryResult() {
         <input
           ref={salaryInputRef}
           aria-label="Salaire Annuel Brut"
-          style={{ maxWidth: `${maxWidth}px` }}
-          className={clsx(
-            "text-2xl font-bold text-adv-gold rounded-sm",
-            salaryLocked ? "bg-transparent" : "bg-sky-900",
-          )}
-          disabled={salaryLocked}
+          className="w-20 rounded-sm bg-sky-900 text-center text-2xl font-bold text-adv-gold"
           type="text"
           value={roundedResult}
           onClick={handleClick}
           onChange={({ target }) => handleChange(target)}
-          onKeyDown={({ key }) => key === "Enter" && handleSubmitSalary()}
         />
         <span className="-ml-[12.5px] mr-auto text-2xl font-bold text-adv-gold">€</span>
-
         {salaryLocked ? (
           <BullsEyeIcon
             height="16px"
-            className={clsx("transition-opacity duration-500 ease-in-out", "fill-red-500")}
+            className="fill-red-500 duration-500"
             title="Mode TJM cible."
-            onClick={handleBullseyeClick}
           />
         ) : null}
       </div>

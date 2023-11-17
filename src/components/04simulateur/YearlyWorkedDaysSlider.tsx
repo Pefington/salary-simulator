@@ -34,6 +34,7 @@ function YearlyWorkedDaysSlider() {
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
           "bg-adv-gold",
+          "transition-none",
         )}
         trackClassName="bg-adv-gold h-1.5 rounded-full"
         min={152}

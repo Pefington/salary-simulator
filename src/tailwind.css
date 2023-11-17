@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
   html {
     font-family: 'Roboto Flex Variable', sans-serif;
     @apply max-h-screen snap-y snap-proximity bg-sky-950 text-amber-50;

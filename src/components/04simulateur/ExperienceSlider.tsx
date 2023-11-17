@@ -59,6 +59,7 @@ function ExperienceSlider() {
           "bg-adv-gold",
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
+          "transition-none",
         )}
         trackClassName="bg-adv-gold h-1.5 rounded-full"
         min={0}

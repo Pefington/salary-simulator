@@ -30,7 +30,7 @@ function DailyRateSlider() {
         {salaryLocked ? (
           <BullsEyeIcon
             height="14px"
-            className={clsx("transition-opacity duration-500 ease-in-out", "fill-red-500", "ml-2")}
+            className="ml-2 fill-red-500 duration-500"
             title="Mode TJM cible."
             onClick={handleBullseyeClick}
           />
@@ -51,6 +51,7 @@ function DailyRateSlider() {
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
           salaryLocked ? "bg-red-500" : "bg-adv-gold",
+          "transition-none",
         )}
         trackClassName="bg-adv-gold h-1.5 rounded-full"
         min={getPayGrade(experience).minDailyRate}

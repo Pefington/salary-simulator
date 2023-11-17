@@ -58,13 +58,11 @@ function ExperienceSlider({ levelRef }: ExperienceSliderProps) {
   return (
     <div className="w-full">
       <div className="flex flex-wrap justify-between">
-        <h4 className="pr-12">
+        <h4 ref={levelRef} className="pr-12">
           {`Années\u00A0d'expérience\u00A0:\u00A0`}
           <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
         </h4>
-        <h3 ref={levelRef} className="font-bold text-adv-gold">
-          Niveau : {title}
-        </h3>
+        <h3 className="font-bold text-adv-gold">Niveau : {title}</h3>
       </div>
       <ReactSlider
         ariaLabel="Années d'expérience"

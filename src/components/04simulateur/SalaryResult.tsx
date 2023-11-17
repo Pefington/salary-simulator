@@ -4,22 +4,22 @@ import { useEffect, useRef } from "react";
 
 import { BullsEyeIcon } from "../../icons";
 import {
-  lockSalary,
-  salaryResult,
-  selectedDays,
-  selectedExperience,
-  selectedRate,
+  lockSalaryAtom,
+  salaryResultAtom,
+  selectedDaysAtom,
+  selectedExperienceAtom,
+  selectedRateAtom,
 } from "../../state/jotai";
 import { getDailyRateFromTarget } from "../../utils/getDailyRate";
 import { getYearlyGrossSalary } from "../../utils/getSalary";
 
 function SalaryResult() {
-  const experience = useAtomValue(selectedExperience);
-  const days = useAtomValue(selectedDays);
+  const experience = useAtomValue(selectedExperienceAtom);
+  const days = useAtomValue(selectedDaysAtom);
 
-  const [salaryLocked, setSalaryLocked] = useAtom(lockSalary);
-  const [rate, setRate] = useAtom(selectedRate);
-  const [salary, setSalary] = useAtom(salaryResult);
+  const [salaryLocked, setSalaryLocked] = useAtom(lockSalaryAtom);
+  const [rate, setRate] = useAtom(selectedRateAtom);
+  const [salary, setSalary] = useAtom(salaryResultAtom);
 
   const salaryInputRef = useRef<HTMLInputElement>(null);
 

@@ -1,29 +1,49 @@
 import clsx from "clsx";
-import { useAtom, useSetAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { RefObject, useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 
-import { lockSalary, selectedExperience, selectedRate } from "../../state/jotai";
+import {
+  lockSalaryAtom,
+  salaryResultAtom,
+  selectedExperienceAtom,
+  selectedRateAtom,
+} from "../../state/jotai";
 import { Years } from "../../types";
 import { findTitle, getPayGrade } from "../../utils/helpers";
 
-function ExperienceSlider() {
-  const [experience, setExperience] = useAtom(selectedExperience);
-  const setSalaryLocked = useSetAtom(lockSalary);
-  const setDailyRate = useSetAtom(selectedRate);
+interface ExperienceSliderProps {
+  levelRef: RefObject<HTMLHeadingElement>;
+}
 
-  const [title, setTitle] = useState(findTitle(experience));
+function ExperienceSlider({ levelRef }: ExperienceSliderProps) {
+  const [selectedExperience, setSelectedExperience] = useAtom(selectedExperienceAtom);
+  const [lockSalary, setLockSalary] = useAtom(lockSalaryAtom);
+  const setSelectedRate = useSetAtom(selectedRateAtom);
+  const salaryResult = useAtomValue(salaryResultAtom);
+
+  const [title, setTitle] = useState(findTitle(selectedExperience));
 
   useEffect(() => {
-    setTitle(findTitle(experience));
-  }, [experience]);
+    if (lockSalary) {
+      const debounce = setTimeout(() => {
+        levelRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 1000);
+
+      return () => clearTimeout(debounce);
+    }
+  }, [levelRef, lockSalary, salaryResult]);
+
+  useEffect(() => {
+    setTitle(findTitle(selectedExperience));
+  }, [selectedExperience]);
 
   useEffect(() => {
     document.title = `Simulateur de Salaire - ${title}`;
-    setDailyRate(getPayGrade(experience).minDailyRate);
-  }, [experience, setDailyRate, title]);
+    setSelectedRate(getPayGrade(selectedExperience).minDailyRate);
+  }, [selectedExperience, setSelectedRate, title]);
 
-  const getYearsLabel = (years: number = experience) => {
+  const getYearsLabel = (years: number = selectedExperience) => {
     if (years === 0) return "<\u00A01\u00A0an";
     if (years === 1) return `1\u00A0an`;
     if (years > 12) return `12+\u00A0ans`;
@@ -31,8 +51,8 @@ function ExperienceSlider() {
   };
 
   const handleChange = (value: Years) => {
-    setExperience(value);
-    setSalaryLocked(false);
+    setSelectedExperience(value);
+    setLockSalary(false);
   };
 
   return (
@@ -42,7 +62,9 @@ function ExperienceSlider() {
           {`Années\u00A0d'expérience\u00A0:\u00A0`}
           <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
         </h4>
-        <h3 className="font-bold text-adv-gold">Niveau : {title}</h3>
+        <h3 ref={levelRef} className="font-bold text-adv-gold">
+          Niveau : {title}
+        </h3>
       </div>
       <ReactSlider
         ariaLabel="Années d'expérience"
@@ -64,7 +86,7 @@ function ExperienceSlider() {
         trackClassName="bg-adv-gold h-1.5 rounded-full"
         min={0}
         max={13}
-        value={experience}
+        value={selectedExperience}
         onChange={handleChange}
         marks={[0, 3, 5, 8, 10, 13]}
       />

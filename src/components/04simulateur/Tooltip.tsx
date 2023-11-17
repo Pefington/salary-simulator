@@ -2,12 +2,12 @@ import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
 
 import { BullsEyeIcon } from "../../icons";
-import { salaryResult, showTooltip } from "../../state/jotai";
+import { salaryResultAtom, showTooltipAtom } from "../../state/jotai";
 
 function Tooltip() {
-  const [showDialog, setShowDialog] = useAtom(showTooltip);
+  const [showDialog, setShowDialog] = useAtom(showTooltipAtom);
 
-  const roundedResult = Math.floor(useAtomValue(salaryResult));
+  const roundedResult = Math.floor(useAtomValue(salaryResultAtom));
 
   return (
     <dialog

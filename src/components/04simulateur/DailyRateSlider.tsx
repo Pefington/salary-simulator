@@ -3,21 +3,21 @@ import { useAtom, useAtomValue } from "jotai";
 import ReactSlider from "react-slider";
 
 import { BullsEyeIcon } from "../../icons";
-import { lockSalary, selectedExperience, selectedRate } from "../../state/jotai";
+import { lockSalaryAtom, selectedExperienceAtom, selectedRateAtom } from "../../state/jotai";
 import { getPayGrade } from "../../utils/helpers";
 
 function DailyRateSlider() {
-  const [dailyRate, setDailyRate] = useAtom(selectedRate);
-  const [salaryLocked, setSalaryLocked] = useAtom(lockSalary);
-  const experience = useAtomValue(selectedExperience);
+  const [selectedRate, setSelectedRate] = useAtom(selectedRateAtom);
+  const [lockSalary, setLockSalary] = useAtom(lockSalaryAtom);
+  const selectedExperience = useAtomValue(selectedExperienceAtom);
 
   const handleChange = (value: number) => {
-    setDailyRate(value);
-    setSalaryLocked(false);
+    setSelectedRate(value);
+    setLockSalary(false);
   };
 
   const handleBullseyeClick = () => {
-    setSalaryLocked(false);
+    setLockSalary(false);
   };
 
   return (
@@ -25,9 +25,9 @@ function DailyRateSlider() {
       <div className="flex items-baseline">
         <h4 className="mb-4">
           {`Taux Journalier Moyen\u00A0:\u00A0`}
-          <span className="text-adv-gold">{dailyRate}</span>
+          <span className="text-adv-gold">{selectedRate}</span>
         </h4>
-        {salaryLocked ? (
+        {lockSalary ? (
           <BullsEyeIcon
             height="14px"
             className="ml-2 fill-red-500 duration-500"
@@ -50,14 +50,14 @@ function DailyRateSlider() {
           "h-6 aspect-square",
           "rounded-full drop-shadow-lg",
           "focus:ring-4 outline-none",
-          salaryLocked ? "bg-red-500" : "bg-adv-gold",
+          lockSalary ? "bg-red-500" : "bg-adv-gold",
           "transition-none",
         )}
         trackClassName="bg-adv-gold h-1.5 rounded-full"
-        min={getPayGrade(experience).minDailyRate}
+        min={getPayGrade(selectedExperience).minDailyRate}
         max={1000}
         step={10}
-        value={dailyRate}
+        value={selectedRate}
         onChange={handleChange}
       />
     </div>

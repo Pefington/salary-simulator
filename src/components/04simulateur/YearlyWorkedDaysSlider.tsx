@@ -2,11 +2,11 @@ import clsx from "clsx";
 import { useAtom, useSetAtom } from "jotai";
 import ReactSlider from "react-slider";
 
-import { lockSalary, selectedDays } from "../../state/jotai";
+import { lockSalaryAtom, selectedDaysAtom } from "../../state/jotai";
 
 function YearlyWorkedDaysSlider() {
-  const [workedDays, setWorkedDays] = useAtom(selectedDays);
-  const setSalaryLocked = useSetAtom(lockSalary);
+  const [workedDays, setWorkedDays] = useAtom(selectedDaysAtom);
+  const setSalaryLocked = useSetAtom(lockSalaryAtom);
 
   const handleChange = (value: number) => {
     setSalaryLocked(false);

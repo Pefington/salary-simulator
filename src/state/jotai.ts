@@ -3,10 +3,13 @@ import { atomWithStorage } from 'jotai/utils';
 
 import grades from '../data/grades.json';
 
-export const selectedExperience = atomWithStorage('selExperience', 0);
-export const selectedRate = atomWithStorage('selRate', grades.Junior.minDailyRate);
-export const selectedDays = atomWithStorage('selDays', 218);
-export const lockSalary = atomWithStorage('lockSalary', false);
-export const showTooltip = atomWithStorage('showTooltip', false);
+export const selectedExperienceAtom = atomWithStorage('selExperience', 0);
+export const selectedRateAtom = atomWithStorage('selRate', grades.Junior.minDailyRate);
+export const selectedDaysAtom = atomWithStorage('selDays', 218);
+export const lockSalaryAtom = atomWithStorage('lockSalary', false);
+export const showTooltipAtom = atomWithStorage('showTooltip', false);
 
-export const salaryResult = atom(0);
+export const levelRefAtom = atom(null);
+export const resultRefAtom = atom(null);
+
+export const salaryResultAtom = atom(0);

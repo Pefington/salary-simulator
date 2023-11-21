@@ -32,7 +32,7 @@ function DailyRateSlider({ rateRef }: DailyRateSliderProps) {
   };
 
   useEffect(() => {
-    if (lockSalary) {
+    if (lockSalary && window.innerWidth <= 768) {
       const scroll = setTimeout(() => {
         rateRef.current?.scrollIntoView({ behavior: "smooth" });
       }, 2000);

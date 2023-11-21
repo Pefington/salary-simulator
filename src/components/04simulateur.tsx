@@ -10,7 +10,7 @@ import Tooltip from "./04simulateur/Tooltip";
 function Simulateur() {
   const setShowTooltip = useSetAtom(showTooltipAtom);
 
-  const levelRef = useRef<HTMLHeadingElement>(null);
+  const rateRef = useRef<HTMLHeadingElement>(null);
 
   return (
     <section>
@@ -32,7 +32,7 @@ function Simulateur() {
           </span>
         </h2>
         <div className="flex flex-col gap-5 md:flex-row md:justify-between md:gap-10">
-          <Sliders levelRef={levelRef} />
+          <Sliders rateRef={rateRef} />
           <SalaryResult />
         </div>
       </div>

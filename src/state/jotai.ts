@@ -9,7 +9,7 @@ export const selectedDaysAtom = atomWithStorage('selDays', 218);
 export const lockSalaryAtom = atomWithStorage('lockSalary', false);
 export const showTooltipAtom = atomWithStorage('showTooltip', false);
 
-export const levelRefAtom = atom(null);
+export const rateRefAtom = atom(null);
 export const resultRefAtom = atom(null);
 
 export const salaryResultAtom = atom(0);

@@ -37,7 +37,7 @@ function SalaryResult() {
       const inputTimeout = setTimeout(() => {
         salaryInputRef.current?.select();
         setRate(getDailyRateFromTarget(experience, salary, days));
-      }, 1000);
+      }, 2000);
 
       return () => clearTimeout(inputTimeout);
     } else salaryInputRef.current?.blur();

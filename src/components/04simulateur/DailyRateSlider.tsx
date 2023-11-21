@@ -1,15 +1,26 @@
 import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
+import { RefObject, useEffect } from "react";
 import ReactSlider from "react-slider";
 
 import { BullsEyeIcon } from "../../icons";
-import { lockSalaryAtom, selectedExperienceAtom, selectedRateAtom } from "../../state/jotai";
+import {
+  lockSalaryAtom,
+  salaryResultAtom,
+  selectedExperienceAtom,
+  selectedRateAtom,
+} from "../../state/jotai";
 import { getPayGrade } from "../../utils/helpers";
 
-function DailyRateSlider() {
+interface DailyRateSliderProps {
+  rateRef: RefObject<HTMLHeadingElement>;
+}
+
+function DailyRateSlider({ rateRef }: DailyRateSliderProps) {
   const [selectedRate, setSelectedRate] = useAtom(selectedRateAtom);
   const [lockSalary, setLockSalary] = useAtom(lockSalaryAtom);
   const selectedExperience = useAtomValue(selectedExperienceAtom);
+  const salaryResult = useAtomValue(salaryResultAtom);
 
   const handleChange = (value: number) => {
     setSelectedRate(value);
@@ -20,10 +31,20 @@ function DailyRateSlider() {
     setLockSalary(false);
   };
 
+  useEffect(() => {
+    if (lockSalary) {
+      const scroll = setTimeout(() => {
+        rateRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 2000);
+
+      return () => clearTimeout(scroll);
+    }
+  }, [rateRef, lockSalary, salaryResult]);
+
   return (
     <div className="w-full">
       <div className="flex items-baseline">
-        <h4 className="mb-4">
+        <h4 ref={rateRef} className="mb-4">
           {`Taux Journalier Moyen\u00A0:\u00A0`}
           <span className="text-adv-gold">{selectedRate}</span>
         </h4>

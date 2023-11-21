@@ -1,38 +1,18 @@
 import clsx from "clsx";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { RefObject, useEffect, useState } from "react";
+import { useAtom, useSetAtom } from "jotai";
+import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 
-import {
-  lockSalaryAtom,
-  salaryResultAtom,
-  selectedExperienceAtom,
-  selectedRateAtom,
-} from "../../state/jotai";
+import { lockSalaryAtom, selectedExperienceAtom, selectedRateAtom } from "../../state/jotai";
 import { Years } from "../../types";
 import { findTitle, getPayGrade } from "../../utils/helpers";
 
-interface ExperienceSliderProps {
-  levelRef: RefObject<HTMLHeadingElement>;
-}
-
-function ExperienceSlider({ levelRef }: ExperienceSliderProps) {
+function ExperienceSlider() {
   const [selectedExperience, setSelectedExperience] = useAtom(selectedExperienceAtom);
-  const [lockSalary, setLockSalary] = useAtom(lockSalaryAtom);
+  const setLockSalary = useSetAtom(lockSalaryAtom);
   const setSelectedRate = useSetAtom(selectedRateAtom);
-  const salaryResult = useAtomValue(salaryResultAtom);
 
   const [title, setTitle] = useState(findTitle(selectedExperience));
-
-  useEffect(() => {
-    if (lockSalary) {
-      const debounce = setTimeout(() => {
-        levelRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 3000);
-
-      return () => clearTimeout(debounce);
-    }
-  }, [levelRef, lockSalary, salaryResult]);
 
   useEffect(() => {
     setTitle(findTitle(selectedExperience));
@@ -58,7 +38,7 @@ function ExperienceSlider({ levelRef }: ExperienceSliderProps) {
   return (
     <div className="w-full">
       <div className="flex flex-wrap justify-between">
-        <h4 ref={levelRef} className="pr-12">
+        <h4 className="pr-12">
           {`Années\u00A0d'expérience\u00A0:\u00A0`}
           <span className="text-adv-gold">{`${getYearsLabel()}`}</span>
         </h4>

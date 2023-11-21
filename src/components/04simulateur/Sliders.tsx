@@ -5,14 +5,14 @@ import ExperienceSlider from "./ExperienceSlider";
 import YearlyWorkedDaysSlider from "./YearlyWorkedDaysSlider";
 
 interface SlidersProps {
-  levelRef: RefObject<HTMLHeadingElement>;
+  rateRef: RefObject<HTMLHeadingElement>;
 }
 
-function Sliders({ levelRef }: SlidersProps) {
+function Sliders({ rateRef }: SlidersProps) {
   return (
     <div className="flex w-full flex-grow flex-col gap-4">
-      <ExperienceSlider levelRef={levelRef} />
-      <DailyRateSlider />
+      <ExperienceSlider />
+      <DailyRateSlider rateRef={rateRef} />
       <YearlyWorkedDaysSlider />
     </div>
   );
